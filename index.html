@@ -33,7 +33,7 @@
         </div>
 
         <div class="chart-board">
-            <span>Chart here</span>
+            <canvas id="expenseChart"></canvas>
         </div>
 
         <!-- Tab Navigation -->
@@ -49,6 +49,23 @@
         </div>
         <button id="view-all-button" class="view-all-button" onclick="navigateToReport()">View All Transactions</button>
         
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div id="add-transaction-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Add Transaction</h2>
+            <form id="add-transaction-form">
+                <input type="text" id="description" placeholder="Description" required>
+                <input type="number" id="amount" placeholder="Amount" required>
+                <select id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <button type="submit">Add</button>
+            </form>
+            <button id="close-modal">Close</button>
+        </div>
     </div>
 
     <!-- Bottom Navigation -->

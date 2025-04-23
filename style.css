@@ -70,7 +70,7 @@ header {
 
 .content::-webkit-scrollbar-thumb {
     background-color: #7c858b;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .content::-webkit-scrollbar-thumb:hover {
@@ -94,14 +94,13 @@ header {
     padding: 10px;
     border-radius: 15px;
 
-    width: 100;
-    height: 10em;
-    justify-content: center;
-    box-shadow: ;
+    width: 100%;;
+    max-width: 400px;
+    margin: 0 auto;
 }
 /* Tab navigation styling */
 .tab-navigation {
-    display: flex;
+    display: flex;;
     justify-content: space-around;
     margin-top: 15px;
     background-color: #eceff1;
@@ -117,7 +116,7 @@ header {
     font-size: 16px;
     font-weight: bold;
     color: #7c858b;
-    cursor: pointer;
+    cursor: pointer;;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 5px;
 }
@@ -128,11 +127,11 @@ header {
 }
 
 .tab-button:hover {
-    background-color: #d0d3d4;
+    background-color: #d0d3d4;r: #d0d3d4;
     color: #7c858b;
 }
 
-/* Transaction item styling */
+/* Transaction item styling *//* Transaction item styling */
 .transaction-item {
     display: flex;
     justify-content: space-between;
@@ -145,7 +144,7 @@ header {
     flex: 1;
     text-align: left;
     color: #7c858b;
-    font-size: 14px;
+    font-size: 14px;;
 }
 
 .transaction-description {
@@ -179,7 +178,7 @@ header {
     background-color: #5a6368;
 }
 
-/* Bottom navigation styling */
+/* Bottom navigation styling *//* Bottom navigation styling */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -210,7 +209,7 @@ header {
 #add-button {
     background-color: rgb(212, 203, 203);
     width: 200%;
-    height: 200%;
+    height: 200%;;
     border-radius: 100%;
     border: 0.1em solid #d0d3d4;
     box-shadow: 0 0 10px #889096, 0 0 20px #7c858b, 0 0 30px #9aa0a3;
@@ -222,4 +221,30 @@ header {
 }
 .nav-item.hover {
     border-radius: 5px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
 }

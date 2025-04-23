@@ -144,6 +144,23 @@ header {
     color: #7c858b;
 }
 
+.view-all-button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #7c858b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.view-all-button:hover {
+    background-color: #5a6368;
+}
+
 /* Bottom navigation styling */
 .bottom-nav {
     position: fixed;

@@ -48,44 +48,55 @@ navItems.forEach(item => {
 		alert(`Navigating to ${item.querySelector('.nav-text').textContent}`);
 	});
 });
+
 // Sample data for transactions
 const transactions = {
-    all: [
-        { date: '2025-04-20', description: 'Groceries', amount: '-$50.00' },
-        { date: '2025-04-21', description: 'Salary', amount: '+$2000.00' },
-        { date: '2025-04-22', description: 'Electricity Bill', amount: '-$100.00' }
-    ],
-    expenses: [
-        { date: '2025-04-20', description: 'Groceries', amount: '-$50.00' },
-        { date: '2025-04-22', description: 'Electricity Bill', amount: '-$100.00' }
-    ],
-    income: [
-        { date: '2025-04-21', description: 'Salary', amount: '+$2000.00' }
-    ]
+	all: [
+		{ date: '2025-04-20', description: 'Groceries', amount: '-$50.00' },
+		{ date: '2025-04-21', description: 'Salary', amount: '+$2000.00' },
+		{ date: '2025-04-22', description: 'Electricity Bill', amount: '-$100.00' }
+	],
+	expenses: [
+		{ date: '2025-04-20', description: 'Groceries', amount: '-$50.00' },
+		{ date: '2025-04-22', description: 'Electricity Bill', amount: '-$100.00' }
+	],
+	income: [
+		{ date: '2025-04-21', description: 'Salary', amount: '+$2000.00' }
+	]
 };
 
 // Function to handle tab switching
 function showTab(tab) {
-    // Update the active tab button
-    const tabs = document.querySelectorAll('.tab-button');
-    tabs.forEach(button => button.classList.remove('active'));
-    document.getElementById(`${tab}-tab`).classList.add('active');
+	// Update the active tab button
+	const tabs = document.querySelectorAll('.tab-button');
+	tabs.forEach(button => button.classList.remove('active'));
+	document.getElementById(`${tab}-tab`).classList.add('active');
 
-    // Update the content based on the selected tab
-    const tabContent = document.getElementById('tab-content');
-    const tabTransactions = transactions[tab];
-    if (tabTransactions) {
-        tabContent.innerHTML = tabTransactions
-            .map(
-                transaction =>
-                    `<div class="transaction-item">
-                        <span class="transaction-date">${transaction.date}</span>
-                        <span class="transaction-description">${transaction.description}</span>
-                        <span class="transaction-amount">${transaction.amount}</span>
-                    </div>`
-            )
-            .join('');
+	// Update the content based on the selected tab
+	const tabContent = document.getElementById('tab-content');
+	const tabTransactions = transactions[tab];
+	if (tabTransactions) {
+		tabContent.innerHTML = tabTransactions
+			.map(
+				transaction =>
+					`<div class="transaction-item">
+						<span class="transaction-date">${transaction.date}</span>
+						<span class="transaction-description">${transaction.description}</span>
+						<span class="transaction-amount">${transaction.amount}</span>
+					</div>`
+			)
+			.join('');
+	} else {
+		tabContent.innerHTML = '<p>No transactions available.</p>';
+	}
+}
+// Function to navigate to the "Report" tab
+function navigateToReport() {
+    const reportTab = document.getElementById('report-tab');
+    if (reportTab) {
+        showTab('all'); // Show all transactions in the report tab
+        reportTab.click(); // Simulate a click on the "Report" tab
     } else {
-        tabContent.innerHTML = '<p>No transactions available.</p>';
+        alert('Report tab not implemented yet.');
     }
 }

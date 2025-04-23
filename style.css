@@ -87,9 +87,6 @@ header {
     background-color: #7c858b;
     padding: 10px;
     border-radius: 15px;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
 }
 /* Tab navigation styling */
 .tab-navigation {

@@ -9,11 +9,6 @@ const tabContent = document.getElementById('tab-content');
 const addButton = document.getElementById('add-button');
 const navItems = document.querySelectorAll('.nav-item');
 const searchInput = document.querySelector('.search-icon');
-const content = document.querySelector('.content');
-const homeTab = document.getElementById('home-tab');
-const chartTab = document.getElementById('chart-tab');
-const reportTab = document.getElementById('report-tab');
-const meTab = document.getElementById('me-tab');
 
 // Event Listeners
 allTab.addEventListener('click', () => showTab('all'));
@@ -37,23 +32,6 @@ searchInput.addEventListener('input', (e) => {
                 </div>`
         )
         .join('');
-});
-
-// Event Listeners for Bottom Navigation Tabs
-homeTab.addEventListener('click', () => {
-    showHomePage();
-});
-
-chartTab.addEventListener('click', () => {
-    showChartPage();
-});
-
-reportTab.addEventListener('click', () => {
-    showReportPage();
-});
-
-meTab.addEventListener('click', () => {
-    showMePage();
 });
 
 // Function to handle tab switching
@@ -239,85 +217,3 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTransactions();
     showTab('all');
 });
-
-// Functions to Update Content
-function showHomePage() {
-    content.innerHTML = `
-        <div class="balance-board">
-            <p class="balance-text">Balance:</p>
-            <span id="balance">0.00</span>
-        </div>
-        <div class="chart-board">
-            <canvas id="expenseChart">Your browser does not support the canvas element.</canvas>
-        </div>
-        <div class="tab-navigation">
-            <button class="tab-button active" id="all-tab" onclick="showTab('all')">All</button>
-            <button class="tab-button" id="expenses-tab" onclick="showTab('expenses')">Expenses</button>
-            <button class="tab-button" id="income-tab" onclick="showTab('income')">Income</button>
-        </div>
-        <div id="tab-content"></div>
-        <button id="view-all-button" class="view-all-button" onclick="navigateToReport()">View All Transactions</button>
-    `;
-    showTab('all'); // Ensure the "All" tab is active
-}
-
-function showChartPage() {
-    content.innerHTML = `
-        <h2>Expense Chart</h2>
-        <div class="chart-board">
-            <canvas id="expenseChart">Your browser does not support the canvas element.</canvas>
-        </div>
-    `;
-    renderChart(); // Render the chart dynamically
-}
-
-function showReportPage() {
-    content.innerHTML = `
-        <h2>Transaction Report</h2>
-        <div id="report-content">
-            <p>All transactions will be displayed here.</p>
-        </div>
-    `;
-    populateReport(); // Populate the report dynamically
-}
-
-function showMePage() {
-    content.innerHTML = `
-        <h2>Profile</h2>
-        <div class="profile-page">
-            <img id="user-photo" src="assets/feather-icon/user.svg" alt="User Profile Photo">
-            <p class="user-name">Hi, <span id="username">Group 11</span></p>
-            <button id="logout-button" class="logout-button">Logout</button>
-        </div>
-    `;
-}
-
-// Example Functions for Chart and Report
-function renderChart() {
-    const ctx = document.getElementById('expenseChart').getContext('2d');
-    const chartData = {
-        labels: ['Income', 'Expenses'],
-        datasets: [{
-            label: 'Income vs Expenses',
-            data: [2000, 1500], // Replace with dynamic data
-            backgroundColor: ['#4caf50', '#f44336'],
-        }]
-    };
-    new Chart(ctx, {
-        type: 'pie',
-        data: chartData,
-    });
-}
-
-function populateReport() {
-    const reportContent = document.getElementById('report-content');
-    reportContent.innerHTML = transactions.all
-        .map(transaction => `
-            <div class="transaction-item">
-                <span class="transaction-date">${transaction.date}</span>
-                <span class="transaction-description">${transaction.description}</span>
-                <span class="transaction-amount">${transaction.amount}</span>
-            </div>
-        `)
-        .join('');
-}

@@ -58,7 +58,7 @@ header {
     flex-direction: column; 
     justify-content: flex-start; /* Align items at the top */
     gap: 15px; /* Add spacing between items */
-    max-height: calc(100vh - 150px); /* Adjust height based on header and footer */
+    max-height: calc(100vh - 150px - 60px); /* Adjust height based on header and bottom nav */
     overflow-y: auto; /* Enable vertical scrolling */
     scrollbar-width: thin; /* For Firefox: thin scrollbar */
 }

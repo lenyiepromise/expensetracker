@@ -441,3 +441,68 @@ header {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left-content">
+            <img id="user-photo" src="assets/feather-icon/user.svg" alt="User Profile Photo">
+            <p class="user-name">Hi, <span id="username">Guest</span></p>
+        </div>
+        <div class="header-right-content">
+            <a href="signin.html" class="sign-in-link">Sign In</a>
+        </div>
+    </header>
+
+    <!-- Profile Content -->
+    <div class="content">
+        <h2>Profile</h2>
+        <div class="profile-page">
+            <img id="user-photo" src="assets/feather-icon/user.svg" alt="User Profile Photo">
+            <p class="user-name">Hi, <span id="username">Guest</span></p>
+            <button id="logout-button" class="logout-button">Logout</button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="index.html">
+            <li class="nav-item" id="home-tab">
+                <img class="nav-icon" src="assets/feather-icon/home.svg" alt="Home Icon">
+                <span class="nav-text">Home</span>
+            </li>
+        </a>
+        <a href="chart.html">
+            <li class="nav-item">
+                <img class="nav-icon" src="assets/feather-icon/pie-chart.svg" alt="Chart Icon">
+                <span class="nav-text">Chart</span>
+            </li> 
+        </a>
+        <a>
+            <li class="nav-item">
+                <img id="add-button" class="nav-icon" src="assets/feather-icon/plus.svg" alt="Add Icon">
+                <span class="nav-text"></span>
+            </li>
+        </a>
+        <a href="report.html">
+            <li class="nav-item" id="report-tab">
+                <img class="nav-icon" src="assets/feather-icon/file-text.svg" alt="Report Icon">
+                <span class="nav-text">Report</span>
+            </li>
+        </a>
+        <a href="me.html">
+            <li class="nav-item active">
+                <img class="nav-icon" src="assets/feather-icon/user.svg" alt="Profile Icon">
+                <span class="nav-text">Me</span>
+            </li>
+        </a>
+    </nav>
+</body>
+</html>

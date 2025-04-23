@@ -92,11 +92,21 @@ function showTab(tab) {
 }
 // Function to navigate to the "Report" tab
 function navigateToReport() {
-    const reportTab = document.getElementById('report-tab');
-    if (reportTab) {
-        showTab('all'); // Show all transactions in the report tab
-        reportTab.click(); // Simulate a click on the "Report" tab
-    } else {
-        alert('Report tab not implemented yet.');
-    }
+    const tabContent = document.getElementById('tab-content');
+    const allTransactions = transactions.all;
+    tabContent.innerHTML = allTransactions
+        .map(
+            transaction =>
+                `<div class="transaction-item">
+                    <span class="transaction-date">${transaction.date}</span>
+                    <span class="transaction-description">${transaction.description}</span>
+                    <span class="transaction-amount">${transaction.amount}</span>
+                </div>`
+        )
+        .join('');
 }
+
+// Make the "All" tab active by default when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    showTab('all');
+});

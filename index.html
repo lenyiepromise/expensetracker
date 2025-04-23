@@ -35,6 +35,19 @@
         <div class="chart-board">
             <span>Chart here</span>
         </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-button active" id="all-tab" onclick="showTab('all')">All</button>
+            <button class="tab-button" id="expenses-tab" onclick="showTab('expenses')">Expenses</button>
+            <button class="tab-button" id="income-tab" onclick="showTab('income')">Income</button>
+        </div>
+        
+        
+        <div id="tab-content">
+            <!-- Default content for the "All" tab -->
+            <p>All transactions will be displayed here.</p>
+        </div>
         
     </div>
 

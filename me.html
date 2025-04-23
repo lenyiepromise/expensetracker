@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
+    <title>Expense Tracker - Profile</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -12,25 +12,28 @@
     <!-- Header -->
     <header class="header">
         
+
+
     </header>
 
 
-        <!-- Add Transaction Modal -->
-        <div id="add-transaction-modal" class="modal hidden">
-            <div class="modal-content">
-                <button id="close-modal" class="close-modal-button">&times;</button>
-                <h2>Add Transaction</h2>
-                <form id="add-transaction-form">
-                    <input type="text" id="description" placeholder="Description" required>
-                    <input type="number" id="amount" placeholder="Amount" required>
-                    <select id="type">
-                        <option value="income">Income</option>
-                        <option value="expense">Expense</option>
-                    </select>
-                    <button type="submit">Add</button>
-                </form>
-            </div>
+
+    <!-- Add Transaction Modal -->
+    <div id="add-transaction-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-modal" class="close-modal-button">&times;</button>
+            <h2>Add Transaction</h2>
+            <form id="add-transaction-form">
+                <input type="text" id="description" placeholder="Description" required>
+                <input type="number" id="amount" placeholder="Amount" required>
+                <select id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <button type="submit">Add</button>
+            </form>
         </div>
+    </div>
 
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
@@ -59,13 +62,13 @@
             </li>
         </a>
         <a href="me.html">
-            <li class="nav-item">
+            <li class="nav-item active">
                 <img class="nav-icon" src="assets/feather-icon/user.svg" alt="Profile Icon">
                 <span class="nav-text">Me</span>
             </li>
         </a>
     </nav>
 
-    <script src="addtransaction.js"></script>
+    <script src="addtransaction.js"> </script>
 </body>
 </html>

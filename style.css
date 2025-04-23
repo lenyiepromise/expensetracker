@@ -151,6 +151,18 @@ header {
     color: #7c858b;
 }
 
+/* Income transaction styling */
+.transaction-amount.income {
+    color: #4caf50; /* Green color for income */
+    font-weight: bold;
+}
+
+/* Expense transaction styling */
+.transaction-amount.expense {
+    color: #f44336; /* Red color for expenses */
+    font-weight: bold;
+}
+
 .view-all-button {
     margin-top: 15px;
     padding: 10px 20px;

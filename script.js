@@ -61,16 +61,18 @@ function showTab(tab) {
     document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
     document.getElementById(`${tab}-tab`).classList.add('active');
 
-    // Update the content based on the selected tab
-    const tabTransactions = transactions[tab];
-    if (tabTransactions) {
+    // Get the transactions for the selected tab and limit to 3
+    const tabTransactions = transactions[tab]?.slice(0, 3); // Limit to 3 transactions
+    if (tabTransactions && tabTransactions.length > 0) {
         tabContent.innerHTML = tabTransactions
             .map(
                 (transaction, index) =>
                     `<div class="transaction-item" data-index="${index}">
                         <span class="transaction-date">${transaction.date}</span>
                         <span class="transaction-description">${transaction.description}</span>
-                        <span class="transaction-amount">${transaction.amount}</span>
+                        <span class="transaction-amount ${transaction.amount.startsWith('+') ? 'income' : 'expense'}">
+                            ${transaction.amount}
+                        </span>
                     </div>`
             )
             .join('');

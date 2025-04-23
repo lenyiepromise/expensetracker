@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'San Francisco';
+    src: url(fonts/FontsFree-Net-SFProDisplay-Regular.ttf);
+}
+body {
+    background-color: rgb(226, 226, 219);
+    font-family: "San Francisco";
+}
+/* Reset body margin and padding */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+/* Header styling */
+header {
+    background-color: #7c858b;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Auto for image, 1fr for the rest */
+    grid-template-rows: 1fr; /* Single row */
+    align-items: center; /* Vertically center items */
+    padding: 10px;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    gap: 10px; /* Add spacing between columns */
+}
+/* Profile image styling 1*/
+.header-left-content {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Add spacing between items */
+}
+/* Profile image styling 2*/
+#user-photo {
+    border: 0.5px solid white;
+    border-radius: 100%;
+    margin-right: 10px;
+        width: 32px; /* Set a default width for the image */
+        height: 32px; /* Set a default height for the image */
+        border-radius: 50%; /* Make the image circular */
+        object-fit: cover; /* Ensure the image scales properly */
+        object-position: center; /* Center the image content */
+}
+/* Header right content styling */
+.header-right-content {
+    display: flex;
+    align-items: center;
+    justify-content: right; /* Spread items evenly */
+    list-style: none;
+    gap: 30px; /* Add spacing between items */
+}
+
+/* Main content styling */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+.balance-board {
+    background-color: #7c858b;
+    padding: 10px;
+}
+#balance {
+    font-size: 30px;
+    line-height: 0;
+    font-weight: bold;
+}
+/* Bottom navigation styling */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #eceff1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+/* Bottom navigation tab styling */
+.nav-item {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    justify-content: center;
+}
+.nav-icon {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 5px;
+}
+#add-button {
+    background-color: rgb(212, 203, 203);
+    width: 200%;
+    height: 200%;
+    border-radius: 100%;
+    border: 0.1em solid #d0d3d4;
+    box-shadow: 0 0 10px #889096, 0 0 20px #7c858b, 0 0 30px #9aa0a3;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#add-button:hover {
+    box-shadow: 0 0 15px #a5aaad, 0 0 30px #7e858a, 0 0 45px #949ba0;
+}
+.nav-item.hover {
+    color: #2980b9;
+    border-radius: 5px;
+}

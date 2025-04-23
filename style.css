@@ -193,6 +193,11 @@ header {
     padding: 10px 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
+/* Remove text decoration for <a> tags in the bottom navigation */
+.bottom-nav a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit the color from the parent element */
+}
 /* Bottom navigation tab styling */
 .nav-item {
     list-style: none;

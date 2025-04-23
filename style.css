@@ -3,14 +3,10 @@
     src: url(fonts/FontsFree-Net-SFProDisplay-Regular.ttf);
 }
 body {
-    background-color: rgb(226, 226, 219);
-    font-family: "San Francisco";
-}
-/* Reset body margin and padding */
-body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    background-color: rgb(226, 226, 219);
+    font-family: "San Francisco", Arial, sans-serif;
 }
 /* Header styling */
 header {
@@ -32,14 +28,12 @@ header {
 }
 /* Profile image styling 2*/
 #user-photo {
-    border: 0.5px solid white;
-    border-radius: 100%;
     margin-right: 10px;
-        width: 32px; /* Set a default width for the image */
-        height: 32px; /* Set a default height for the image */
-        border-radius: 50%; /* Make the image circular */
-        object-fit: cover; /* Ensure the image scales properly */
-        object-position: center; /* Center the image content */
+    width: 32px; /* Set a default width for the image */
+    height: 32px; /* Set a default height for the image */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image scales properly */
+    object-position: center; /* Center the image content */
 }
 /* Header right content styling */
 .header-right-content {
@@ -93,14 +87,13 @@ header {
     background-color: #7c858b;
     padding: 10px;
     border-radius: 15px;
-
-    width: 100%;;
+    width: 100%;
     max-width: 400px;
     margin: 0 auto;
 }
 /* Tab navigation styling */
 .tab-navigation {
-    display: flex;;
+    display: flex;
     justify-content: space-around;
     margin-top: 15px;
     background-color: #eceff1;
@@ -127,7 +120,7 @@ header {
 }
 
 .tab-button:hover {
-    background-color: #d0d3d4;r: #d0d3d4;
+    background-color: #d0d3d4;
     color: #7c858b;
 }
 
@@ -178,7 +171,7 @@ header {
     background-color: #5a6368;
 }
 
-/* Bottom navigation styling *//* Bottom navigation styling */
+/* Bottom navigation styling */
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -223,23 +216,26 @@ header {
     border-radius: 5px;
 }
 
+/* Modal container styling */
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
 }
 
+/* Hide the modal by default */
 .modal.hidden {
     display: none;
 }
 
+/* Modal content styling */
 .modal-content {
     background: white;
     padding: 20px;
@@ -247,4 +243,78 @@ header {
     width: 90%;
     max-width: 400px;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    animation: fadeIn 0.3s ease-in-out; /* Add a fade-in animation */
+}
+
+/* Input fields styling */
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #d0d3d4;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Submit and close buttons styling */
+.modal-content button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button[type="submit"] {
+    background-color: #7c858b;
+    color: white;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #5a6368;
+}
+
+#close-modal {
+    background-color: #f44336;
+    color: white;
+}
+
+#close-modal:hover {
+    background-color: #d32f2f;
+}
+
+/* Close button styling */
+.close-modal-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #7c858b;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal-button:hover {
+    color: #f44336;
+}
+
+/* Fade-in animation for the modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

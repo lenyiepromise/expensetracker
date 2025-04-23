@@ -163,20 +163,40 @@ closeModal.addEventListener('click', () => {
 
 addTransactionForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // Get input values
     const description = document.getElementById('description').value;
     const amount = parseFloat(document.getElementById('amount').value);
     const type = document.getElementById('type').value;
 
-    // Add the transaction to the appropriate category
-    transactions[type === 'income' ? 'income' : 'expenses'].push({
-        date: new Date().toISOString().split('T')[0],
+    // Create a new transaction object
+    const newTransaction = {
+        date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
         description,
         amount: type === 'income' ? `+${amount}` : `-${amount}`
-    });
+    };
 
-    modal.classList.add('hidden');
-    showTab('all'); // Refresh the "All" tab
+    // Add the new transaction to the beginning of the appropriate array
+    if (type === 'income') {
+        transactions.income.unshift(newTransaction);
+    } else {
+        transactions.expenses.unshift(newTransaction);
+    }
+
+    // Add the new transaction to the "All" array
+    transactions.all.unshift(newTransaction);
+
+    // Save transactions to localStorage (if implemented)
     saveTransactions();
+
+    // Refresh the "All" tab to show the updated list
+    showTab('all');
+
+    // Close the modal
+    modal.classList.add('hidden');
+
+    // Reset the form
+    addTransactionForm.reset();
 });
 
 // Save transactions to localStorage

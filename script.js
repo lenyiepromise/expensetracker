@@ -9,149 +9,102 @@ const tabContent = document.getElementById('tab-content');
 const addButton = document.getElementById('add-button');
 const navItems = document.querySelectorAll('.nav-item');
 const searchInput = document.querySelector('.search-icon');
+const modal = document.getElementById('add-transaction-modal');
+const closeModal = document.getElementById('close-modal');
+const addTransactionForm = document.getElementById('add-transaction-form');
+const editModal = document.getElementById('edit-transaction-modal');
+const closeEditModal = document.getElementById('close-edit-modal');
+const editTransactionForm = document.getElementById('edit-transaction-form');
+let currentTransactionIndex = null; // To track the transaction being edited
 
-// Event Listeners
-allTab.addEventListener('click', () => showTab('all'));
-expensesTab.addEventListener('click', () => showTab('expenses'));
-incomeTab.addEventListener('click', () => showTab('income'));
-addButton.addEventListener('click', () => alert('Add new transaction!'));
-searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase();
-    const filteredTransactions = transactions.all.filter(transaction =>
-        transaction.description.toLowerCase().includes(query)
-    );
+// Sample data for transactions
+const transactions = {
+    all: [
+        { date: '2025-04-20', description: 'Groceries', amount: '-$50.00' },
+        { date: '2025-04-21', description: 'Salary', amount: '+$2000.00' },
+        { date: '2025-04-22', description: 'Electricity Bill', amount: '-$100.00' }
+    ],
+    expenses: [
+        { date: '2025-04-20', description: 'Groceries', amount: '-$50.00' },
+        { date: '2025-04-22', description: 'Electricity Bill', amount: '-$100.00' }
+    ],
+    income: [
+        { date: '2025-04-21', description: 'Salary', amount: '+$2000.00' }
+    ]
+};
 
-    const tabContent = document.getElementById('tab-content');
-    tabContent.innerHTML = filteredTransactions
-        .map(
-            transaction =>
-                `<div class="transaction-item">
-                    <span class="transaction-date">${transaction.date}</span>
-                    <span class="transaction-description">${transaction.description}</span>
-                    <span class="transaction-amount">${transaction.amount}</span>
-                </div>`
-        )
-        .join('');
-});
+// Utility Functions
+function saveTransactions() {
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
+function loadTransactions() {
+    const savedTransactions = localStorage.getItem('transactions');
+    if (savedTransactions) {
+        Object.assign(transactions, JSON.parse(savedTransactions));
+    }
+}
+
+// Function to update the balance dynamically
+function updateBalance(newBalance) {
+    balance.textContent = newBalance.toFixed(2);
+}
+
+// Function to update the username dynamically
+function updateUsername(newName) {
+    username.textContent = newName;
+}
 
 // Function to handle tab switching
 function showTab(tab) {
     // Update the active tab button
-    const tabs = document.querySelectorAll('.tab-button');
-    tabs.forEach(button => button.classList.remove('active'));
+    document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
     document.getElementById(`${tab}-tab`).classList.add('active');
 
     // Update the content based on the selected tab
-    const tabContent = document.getElementById('tab-content');
     const tabTransactions = transactions[tab];
     if (tabTransactions) {
-        const limitedTransactions = tabTransactions.slice(0, 3); // Limit to 3 transactions
-        tabContent.innerHTML = limitedTransactions
+        tabContent.innerHTML = tabTransactions
             .map(
-                transaction =>
-                    `<div class="transaction-item">
+                (transaction, index) =>
+                    `<div class="transaction-item" data-index="${index}">
                         <span class="transaction-date">${transaction.date}</span>
                         <span class="transaction-description">${transaction.description}</span>
                         <span class="transaction-amount">${transaction.amount}</span>
                     </div>`
             )
             .join('');
+        addTransactionClickEvents(); // Add click events to the transactions
     } else {
         tabContent.innerHTML = '<p>No transactions available.</p>';
     }
 }
 
-// Example: Update username dynamically
-function updateUsername(newName) {
-	username.textContent = newName;
+// Function to open the edit modal with transaction details
+function openEditModal(index) {
+    const transaction = transactions.all[index];
+    currentTransactionIndex = index;
+
+    // Pre-fill the form with transaction details
+    document.getElementById('edit-description').value = transaction.description;
+    document.getElementById('edit-amount').value = parseFloat(transaction.amount.replace(/[^\d.-]/g, ''));
+    document.getElementById('edit-type').value = transaction.amount.startsWith('+') ? 'income' : 'expense';
+
+    // Show the modal
+    editModal.classList.remove('hidden');
 }
 
-// Example: Update balance dynamically
-function updateBalance(newBalance) {
-	balance.textContent = newBalance.toFixed(2);
-}
-
-// Example: Add functionality to navigation items
-navItems.forEach(item => {
-	item.addEventListener('click', () => {
-		alert(`Navigating to ${item.querySelector('.nav-text').textContent}`);
-	});
-});
-
-// Sample data for transactions
-const transactions = {
-	all: [
-		{ date: '2025-04-20', description: 'Groceries', amount: '-$50.00' },
-		{ date: '2025-04-21', description: 'Salary', amount: '+$2000.00' },
-		{ date: '2025-04-22', description: 'Electricity Bill', amount: '-$100.00' }
-	],
-	expenses: [
-		{ date: '2025-04-20', description: 'Groceries', amount: '-$50.00' },
-		{ date: '2025-04-22', description: 'Electricity Bill', amount: '-$100.00' }
-	],
-	income: [
-		{ date: '2025-04-21', description: 'Salary', amount: '+$2000.00' }
-	]
-};
-
-// Function to navigate to the "Report" tab
-function navigateToReport() {
-    // Simulate a click on the "All" tab to show all transactions
-    const tabContent = document.getElementById('tab-content');
-    const allTransactions = transactions.all;
-
-    // Populate the tab-content with all transactions
-    tabContent.innerHTML = allTransactions
-        .map(
-            transaction =>
-                `<div class="transaction-item">
-                    <span class="transaction-date">${transaction.date}</span>
-                    <span class="transaction-description">${transaction.description}</span>
-                    <span class="transaction-amount">${transaction.amount}</span>
-                </div>`
-        )
-        .join('');
-
-    // Highlight the "Report" tab in the bottom navigation
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => item.classList.remove('active'));
-    const reportTab = Array.from(navItems).find(item =>
-        item.querySelector('.nav-text')?.textContent === 'Report'
-    );
-    if (reportTab) {
-        reportTab.classList.add('active');
-    }
-}
-
-// Example data for the chart
-const chartData = {
-    labels: ['Income', 'Expenses'],
-    datasets: [{
-        label: 'Income vs Expenses',
-        data: [2000, 1500], // Replace with dynamic data
-        backgroundColor: ['#4caf50', '#f44336'],
-    }]
-};
-
-// Render the chart using Chart.js
-document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('expenseChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'pie', // Change to 'bar' for a bar chart
-        data: chartData,
+// Add click event to each transaction item
+function addTransactionClickEvents() {
+    document.querySelectorAll('.transaction-item').forEach((item, index) => {
+        item.addEventListener('click', () => openEditModal(index));
     });
-});
+}
 
-// Make the "All" tab active by default when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    loadTransactions();
-    showTab('all');
-});
-
-// Modal functionality
-const modal = document.getElementById('add-transaction-modal');
-const closeModal = document.getElementById('close-modal');
-const addTransactionForm = document.getElementById('add-transaction-form');
+// Event Listeners
+allTab.addEventListener('click', () => showTab('all'));
+expensesTab.addEventListener('click', () => showTab('expenses'));
+incomeTab.addEventListener('click', () => showTab('income'));
 
 addButton.addEventListener('click', () => {
     modal.classList.remove('hidden');
@@ -159,6 +112,10 @@ addButton.addEventListener('click', () => {
 
 closeModal.addEventListener('click', () => {
     modal.classList.add('hidden');
+});
+
+closeEditModal.addEventListener('click', () => {
+    editModal.classList.add('hidden');
 });
 
 addTransactionForm.addEventListener('submit', (e) => {
@@ -171,48 +128,65 @@ addTransactionForm.addEventListener('submit', (e) => {
 
     // Create a new transaction object
     const newTransaction = {
-        date: new Date().toISOString().split('T')[0], // Current date in YYYY-MM-DD format
+        date: new Date().toISOString().split('T')[0],
         description,
         amount: type === 'income' ? `+${amount}` : `-${amount}`
     };
 
-    // Add the new transaction to the beginning of the appropriate array
+    // Add the new transaction to the appropriate arrays
+    transactions.all.unshift(newTransaction);
     if (type === 'income') {
         transactions.income.unshift(newTransaction);
     } else {
         transactions.expenses.unshift(newTransaction);
     }
 
-    // Add the new transaction to the "All" array
-    transactions.all.unshift(newTransaction);
-
-    // Save transactions to localStorage (if implemented)
-    saveTransactions();
-
-    // Refresh the "All" tab to show the updated list
-    showTab('all');
-
-    // Close the modal
-    modal.classList.add('hidden');
-
-    // Reset the form
-    addTransactionForm.reset();
+    saveTransactions(); // Save to localStorage
+    showTab('all'); // Refresh the "All" tab
+    modal.classList.add('hidden'); // Close the modal
+    addTransactionForm.reset(); // Reset the form
 });
 
-// Save transactions to localStorage
-function saveTransactions() {
-    localStorage.setItem('transactions', JSON.stringify(transactions));
-}
+editTransactionForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-// Load transactions from localStorage
-function loadTransactions() {
-    const savedTransactions = localStorage.getItem('transactions');
-    if (savedTransactions) {
-        Object.assign(transactions, JSON.parse(savedTransactions));
-    }
-}
+    // Get updated values
+    const description = document.getElementById('edit-description').value;
+    const amount = parseFloat(document.getElementById('edit-amount').value);
+    const type = document.getElementById('edit-type').value;
 
-// Call loadTransactions on page load
+    // Update the transaction
+    transactions.all[currentTransactionIndex] = {
+        date: transactions.all[currentTransactionIndex].date,
+        description,
+        amount: type === 'income' ? `+${amount}` : `-${amount}`
+    };
+
+    saveTransactions(); // Save to localStorage
+    showTab('all'); // Refresh the UI
+    editModal.classList.add('hidden'); // Close the modal
+});
+
+// Search functionality
+searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    const filteredTransactions = transactions.all.filter(transaction =>
+        transaction.description.toLowerCase().includes(query)
+    );
+
+    tabContent.innerHTML = filteredTransactions
+        .map(
+            transaction =>
+                `<div class="transaction-item">
+                    <span class="transaction-date">${transaction.date}</span>
+                    <span class="transaction-description">${transaction.description}</span>
+                    <span class="transaction-amount">${transaction.amount}</span>
+                </div>`
+        )
+        .join('');
+});
+
+// Load transactions and initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     loadTransactions();
     showTab('all');

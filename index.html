@@ -64,6 +64,23 @@
         </div>
     </div>
 
+    <!-- Edit Transaction Modal -->
+    <div id="edit-transaction-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-edit-modal" class="close-modal-button">&times;</button>
+            <h2>Edit Transaction</h2>
+            <form id="edit-transaction-form">
+                <input type="text" id="edit-description" placeholder="Description" required>
+                <input type="number" id="edit-amount" placeholder="Amount" required>
+                <select id="edit-type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
         <ul>

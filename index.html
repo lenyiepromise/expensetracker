@@ -16,12 +16,12 @@
             <p class="user-name">Hi, <span id="username">Group 11</span></p>
         </div>
         <div class="header-right-content">
-            <li class="search-expense">
+            <div class="search-expense">
                 <img class="search-icon" src="assets/feather-icon/search.svg" alt="Search Icon">
-            </li>
-            <li class="notifications">
+            </div>
+            <div class="notifications">
                 <img class="notification-icon" src="assets/feather-icon/bell.svg" alt="Settings Icon">
-            </li>
+            </div>
         </div>
     </header>
 
@@ -33,7 +33,7 @@
         </div>
 
         <div class="chart-board">
-            <canvas id="expenseChart"></canvas>
+            <canvas id="expenseChart">Your browser does not support the canvas element.</canvas>
         </div>
 
         <!-- Tab Navigation -->
@@ -43,12 +43,8 @@
             <button class="tab-button" id="income-tab" onclick="showTab('income')">Income</button>
         </div>
         
-        
-                <div id="tab-content">
-            <!-- Transactions will be dynamically populated here -->
-        </div>
+        <div id="tab-content"></div>
         <button id="view-all-button" class="view-all-button" onclick="navigateToReport()">View All Transactions</button>
-        
     </div>
 
     <!-- Add Transaction Modal -->
@@ -68,6 +64,10 @@
         </div>
     </div>
 
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <ul>
+            <li class="nav-item">
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
         <li class="nav-item">
